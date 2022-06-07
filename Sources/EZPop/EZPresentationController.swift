@@ -52,6 +52,7 @@ public class EZPresentationController: UIPresentationController {
     
     private lazy var tapGestureRecognizer: UITapGestureRecognizer = {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(gesture_dismiss))
+        tapGestureRecognizer.delegate = self
         return tapGestureRecognizer
     }()
     
@@ -180,3 +181,17 @@ extension EZPresentationController: UIViewControllerTransitioningDelegate {
     }
 }
 
+
+extension EZPresentationController: UIGestureRecognizerDelegate {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if touch.view == containerView {
+            return true
+        }
+        
+        return false
+    }
+    
+//    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive event: UIEvent) -> Bool {
+//
+//    }
+}
